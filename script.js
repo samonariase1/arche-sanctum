@@ -1,52 +1,42 @@
-const loader = document.getElementById('loader');
-const auth = document.getElementById('auth');
-const app = document.getElementById('app');
+
 const pinCode = "2025";
+let savedQuotes = [];
 
-window.onload = () => {
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    auth.classList.remove('hidden');
-  }, 3000);
-};
-
-function unlock() {
-  const enteredPin = document.getElementById('pin').value;
-  if (enteredPin === pinCode) {
-    auth.classList.add('hidden');
-    app.classList.remove('hidden');
-    loadQuotes();
+function verifyPIN() {
+  const input = document.getElementById("pinInput").value;
+  if (input === pinCode) {
+    document.getElementById("mainContent").classList.remove("hidden");
   } else {
-    alert("Wrong PIN. Access Denied.");
+    alert("Incorrect PIN. Try again.");
   }
 }
 
-function saveQuote() {
-  const input = document.getElementById('quoteInput').value.trim();
-  if (!input) return alert("Write something first.");
-  const quotes = JSON.parse(localStorage.getItem('sanctum_quotes') || '[]');
-  quotes.push({ text: input, time: new Date().toISOString() });
-  localStorage.setItem('sanctum_quotes', JSON.stringify(quotes));
-  document.getElementById('quoteInput').value = '';
-  loadQuotes();
+function generateQuote() {
+  const openings = ["The veil parts,", "From the throne above,", "Beneath divine silence,", "When the Watchers whisper,", "By ancient decree,"];
+  const middles = [" a fire kindles within.", " time bends to will.", " the scribe seals the Word.", " light pierces the firmament.", " the heavens echo wisdom."];
+  const endings = [" ✴️", " — ARCHE ✴️", " 🜃", " ⚖️🔥", " ✴️🜄"];
+
+  const quote = `${pick(openings)}${pick(middles)}${pick(endings)}`;
+  document.getElementById("quoteInput").value = quote;
 }
 
-function loadQuotes() {
-  const list = document.getElementById('quotesList');
-  const quotes = JSON.parse(localStorage.getItem('sanctum_quotes') || '[]').reverse();
-  list.innerHTML = '';
-  quotes.forEach(q => {
-    const div = document.createElement('div');
-    div.textContent = `✴️ ${q.text}`;
-    list.appendChild(div);
-  });
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function saveQuote() {
+  const quote = document.getElementById("quoteInput").value;
+  if (quote) {
+    savedQuotes.push(quote);
+    document.getElementById("quoteDisplay").innerHTML += `<p>✴️ ${quote}</p>`;
+  }
 }
 
 function exportQuotes() {
-  const quotes = JSON.parse(localStorage.getItem('sanctum_quotes') || '[]');
-  const blob = new Blob([JSON.stringify(quotes, null, 2)], { type: "application/json" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "ARCHE_QUOTES.json";
-  link.click();
+  const blob = new Blob([savedQuotes.join("\n\n")], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ARCHE_Quotes.txt";
+  a.click();
 }

@@ -4,32 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARCHE ✴️ Sanctum</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="loader" id="loader">
-    <div class="glow">✴️</div>
-    <p>Entering the Sanctum...</p>
-  </div>
-
-  <div id="auth" class="hidden">
-    <h1>ARCHE ✴️ SANCTUM</h1>
-    <input type="password" id="pin" maxlength="4" placeholder="🔐 Enter PIN" />
-    <button onclick="unlock()">Access Sanctum</button>
-  </div>
-
-  <main id="app" class="hidden">
-    <header>
-      <h2>🜃 Drop Your Decree</h2>
-    </header>
-    <textarea id="quoteInput" placeholder="Write something divine, encrypted, eternal..."></textarea>
-    <div class="buttons">
-      <button onclick="saveQuote()">✴️ Save</button>
-      <button onclick="exportQuotes()">📤 Export</button>
+  <div class="container">
+    <h1>ARCHE ✴️ Sanctum</h1>
+    <p class="description">Mystic AI-Generated Decrees and Holy Codes</p>
+    <input type="password" id="pinInput" placeholder="Enter Sanctum PIN">
+    <button onclick="verifyPIN()">Access Sanctum</button>
+    <div id="mainContent" class="hidden">
+      <textarea id="quoteInput" placeholder="Type or generate your decree..."></textarea>
+      <div class="actions">
+        <button onclick="generateQuote()">⚡ Generate Esoteric Quote</button>
+        <button onclick="saveQuote()">💾 Save</button>
+        <button onclick="exportQuotes()">📤 Export</button>
+      </div>
+      <div id="quoteDisplay"></div>
+      <footer>
+        <p>Connect: 
+          <a href="https://x.com/arche" target="_blank">X</a> | 
+          <a href="https://instagram.com/arche" target="_blank">Instagram</a>
+        </p>
+      </footer>
     </div>
-    <section id="quotesList"></section>
-  </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
