@@ -4,22 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARCHE ✴️ Sanctum</title>
-  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="lock-screen">
-    <h1>✴️ Enter Sanctum ✴️</h1>
-    <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="4" />
-    <button onclick="unlockSanctum()">Enter</button>
+  <div class="loader" id="loader">
+    <div class="glow">✴️</div>
+    <p>Entering the Sanctum...</p>
   </div>
 
-  <div id="main-app" class="hidden">
-    <header><h1>ARCHE ✴️ Sanctum</h1></header>
-    <textarea id="quoteInput" placeholder="Drop your decree here..."></textarea>
-    <button onclick="saveQuote()">Save ✴️</button>
-    <div id="quotesContainer"></div>
+  <div id="auth" class="hidden">
+    <h1>ARCHE ✴️ SANCTUM</h1>
+    <input type="password" id="pin" maxlength="4" placeholder="🔐 Enter PIN" />
+    <button onclick="unlock()">Access Sanctum</button>
   </div>
+
+  <main id="app" class="hidden">
+    <header>
+      <h2>🜃 Drop Your Decree</h2>
+    </header>
+    <textarea id="quoteInput" placeholder="Write something divine, encrypted, eternal..."></textarea>
+    <div class="buttons">
+      <button onclick="saveQuote()">✴️ Save</button>
+      <button onclick="exportQuotes()">📤 Export</button>
+    </div>
+    <section id="quotesList"></section>
+  </main>
 </body>
 </html>
