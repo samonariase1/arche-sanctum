@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARCHE ✴️ Sanctum</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="lock-screen">
+    <h1>✴️ Enter Sanctum ✴️</h1>
+    <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="4" />
+    <button onclick="unlockSanctum()">Enter</button>
+  </div>
+
+  <div id="main-app" class="hidden">
+    <header><h1>ARCHE ✴️ Sanctum</h1></header>
+    <textarea id="quoteInput" placeholder="Drop your decree here..."></textarea>
+    <button onclick="saveQuote()">Save ✴️</button>
+    <div id="quotesContainer"></div>
+  </div>
+</body>
+</html>
